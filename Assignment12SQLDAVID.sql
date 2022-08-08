@@ -169,14 +169,6 @@ VALUES
 
 -- Selects Section
 
-
--- Shows Order, Name, Price, Date
-select orderDetail_id, order_name as Name,pizza_price as `Pizza Price`, date(date_time) as Date
-from orderdetails
-left join pizza_info on orderdetails.orderDetail_id = pizza_info.pizza_id
-order by order_name, date_time, quantity, orderDetail_id, pizza_price;
-
-
 -- Q4 Shows Name, Total amount 
 select order_name as 'Order Name', sum(quantity * (Select pizza_price from pizza_info where orderdetails.pizza_id = pizza_info.pizza_id)) as Total
 from orderdetails
@@ -188,11 +180,6 @@ select order_name as 'Order Name', date_time as 'Date & Time', sum(quantity * (S
 from orderdetails
 left join pizza_info on orderdetails.orderDetail_id = pizza_info.pizza_id
 group by date_time;
-
-
--- test
-select * from orderdetails
-left join orders_to_pizza on orderdetails.orderDetail_id = orders_to_pizza.orderDetail_id;
 
 select * from customer_info;
 select * from customer_to_orders;
