@@ -176,10 +176,11 @@ left join pizza_info on orderdetails.orderDetail_id = pizza_info.pizza_id
 group by order_name;
 
 -- Q5 Shows Name, Date & Time, Total
-select order_name as 'Order Name', date_time as 'Date & Time', sum(quantity * (Select pizza_price from pizza_info where orderdetails.pizza_id = pizza_info.pizza_id)) as Total
+select order_name as 'Order Name', Date (date_time) as 'Date ',
+ sum(quantity * (Select pizza_price from pizza_info where orderdetails.pizza_id = pizza_info.pizza_id)) as Total
 from orderdetails
 left join pizza_info on orderdetails.orderDetail_id = pizza_info.pizza_id
-group by date_time;
+group by Date (date_time);
 
 select * from customer_info;
 select * from customer_to_orders;
@@ -187,6 +188,16 @@ select * from orderdetails;
 select * from orders_to_pizza;
 select * from pizza_info;
 
+UPDATE orderdetails
+SET date_time ='2015-09-10 09:49:00'
+WHERE orderDetail_id = 2;
 
+UPDATE orderdetails
+SET date_time ='2015-09-10 10:12:00'
+WHERE orderDetail_id = 5;
+
+UPDATE orderdetails
+SET date_time ='2015-09-10 11:39:00'
+WHERE orderDetail_id = 6;
 
 
